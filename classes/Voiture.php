@@ -68,7 +68,7 @@ class Voiture {
     }
 
     public function save() {
-        $sql = "INSERT INTO voiture (marque, couleur, immatriculation ) VALUES (:marque, :couleur, :immat)";
+        $sql = "INSERT INTO voiture (marque, couleur, immatriculation) VALUES (:marque, :couleur, :immat)";
         $req_prep = Model::$pdo->prepare($sql);
 
         $values = array(
