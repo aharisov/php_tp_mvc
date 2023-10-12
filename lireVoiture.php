@@ -7,7 +7,7 @@
     require_once('Voiture.php');
 
     // 1er partie
-    // récuperer des voitures avec un direct requête
+    // récupérer des voitures avec un direct requête
     $rep = Model::$pdo->query('SELECT * FROM voiture');
     $tab_obj = $rep->fetchAll(PDO::FETCH_OBJ);
 
@@ -21,7 +21,7 @@
     }
 
     // 2em partie
-    // récuperer des voitures avec la methode afficher() de la class Voiture
+    // récupérer des voitures avec la methode afficher() de la class Voiture
     $repNew = Model::$pdo->query('SELECT * FROM voiture');
     $repNew->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
     $tab_voit = $repNew->fetchAll();
@@ -33,7 +33,12 @@
     }
 
     // 3em partie
-    // récuperer des voitures avec la methode getAllVoitures() de la class Voiture
+    // récupérer des voitures avec la methode getAllVoitures() de la class Voiture
     echo "<h3>Récuperer des voitures avec la methode getAllVoitures() de la class Voiture</h3>";
 
+    Voiture::getAllVoitures();
+
+    // Créér un objet pour test
+    $newVoiture = new Voiture("BMW", "blanc", "SS111WW");
+    $newVoiture->save();
     Voiture::getAllVoitures();

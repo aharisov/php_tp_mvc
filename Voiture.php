@@ -31,6 +31,7 @@ class Voiture {
         echo "<p>couleur - $this->couleur</p><hr>";
     }
 
+    // la methode affiche toutes les voitures
     public static function getAllVoitures() {
         $rep = Model::$pdo->query('SELECT * FROM voiture');
         $rep->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
@@ -41,6 +42,7 @@ class Voiture {
         }
     }
 
+    // la methode récupère une voiture par immatriculation
     public static function getVoitureByImmat($immat) {
 
         $sql = "SELECT * from voiture WHERE immatriculation=:nom_tag";
@@ -63,5 +65,18 @@ class Voiture {
             return false;
 
         return $tab_voit[0];
+    }
+
+    public function save() {
+        $sql = "INSERT INTO voiture (marque, couleur, immatriculation ) VALUES (:marque, :couleur, :immat)";
+        $req_prep = Model::$pdo->prepare($sql);
+
+        $values = array(
+            "marque" => $this->marque,
+            "couleur" => $this->couleur,
+            "immat" => $this->immatriculation
+        );
+
+        $req_prep->execute($values);
     }
 }
