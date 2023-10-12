@@ -16,13 +16,14 @@
             if ($v) {
                 require ('../view/voiture/detail.php');  
             } else {
+                $v = ["immat" => $immat, "exist" => false];
                 require ('../view/voiture/error.php');  
             }
             
         }
 
         // crée une voiture
-        public static function create($immat) {
+        public static function create() {
             
             require ('../view/voiture/create.php');    
         }
@@ -31,8 +32,14 @@
         public static function created($data) {
             
             $newVoiture = new ModelVoiture($data["marque"], $data["couleur"], $data["immatriculation"]);
-            $newVoiture->save();
-            ControllerVoiture::readAll();
+            $check = $newVoiture->save();
+            
+            if ($check === false) {
+                $v = ["immat" => $data["immatriculation"], "exist" => true];
+                require ('../view/voiture/error.php');  
+            } else {
+                ControllerVoiture::readAll();
+            }
         }
     }
 ?>

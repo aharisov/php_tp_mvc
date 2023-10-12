@@ -94,6 +94,15 @@ class ModelVoiture {
             "immat" => $this->immatriculation
         );
 
-        $req_prep->execute($values);
+        try {
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            $errCode = $e->getCode();
+
+            if ($errCode == 23000) {
+                return false;
+            }
+        };
+        
     }
 }
