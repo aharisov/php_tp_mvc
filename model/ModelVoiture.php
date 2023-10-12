@@ -2,7 +2,7 @@
 
 require_once('Model.php');
 
-class Voiture {
+class ModelVoiture {
     
     private $marque;
     private $couleur;
@@ -24,12 +24,13 @@ class Voiture {
     }
 
     // la methode pour afficher des voitures
+    /*
     public function afficher() {
 
         echo "<p>immatriculation - $this->immatriculation</p>";
         echo "<p>marque - $this->marque</p>";
         echo "<p>couleur - $this->couleur</p><hr>";
-    }
+    }*/
 
     // la methode affiche toutes les voitures
     public static function getAllVoitures() {
@@ -57,7 +58,7 @@ class Voiture {
         $req_prep->execute($values);
     
         // On récupère les résultats comme précédemment
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'Voiture');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
         $tab_voit = $req_prep->fetchAll();
 
         // Attention, si il n'y a pas de résultats, on renvoie false
