@@ -11,7 +11,11 @@
         error_reporting(E_ALL);
         
         foreach ($tab_v as $v)
-            echo '<p> Voiture <a href="/php-tp-mvc/controller/routeur.php?action=read&immat=' . $v->getImmatriculation() . '">d\'immatriculation ' . $v->getImmatriculation() . '</a>.</p>';
+            echo '<p> Voiture <a href="/php-tp-mvc/controller/routeur.php?action=read&immat=' . $v->getImmatriculation() . '">d\'immatriculation ' . $v->getImmatriculation() . '</a>.<br> 
+                <a href="/php-tp-mvc/controller/routeur.php?action=delete&immat=' . $v->getImmatriculation() . '">Supprimer</a>
+            </p>';
         ?>
+
+        <a href="/php-tp-mvc/controller/routeur.php?action=create">Crée une voiture</a>
     </body>
 </html>

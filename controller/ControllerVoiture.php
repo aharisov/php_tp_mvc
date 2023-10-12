@@ -41,5 +41,13 @@
                 ControllerVoiture::readAll();
             }
         }
+
+        // supprime une voiture
+        public static function delete($immat) {
+
+            ModelVoiture::delete($immat);
+            
+            ControllerVoiture::readAll();    
+        }
     }
 ?>

@@ -48,6 +48,7 @@ class ModelVoiture {
 
     // la methode affiche toutes les voitures
     public static function getAllVoitures() {
+
         $rep = Model::$pdo->query('SELECT * FROM voiture');
         $rep->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
         $tab_voit = $rep->fetchAll();
@@ -84,7 +85,9 @@ class ModelVoiture {
         return $tab_voit[0];
     }
 
+    // sauvegarde une nouvelle voiture dans la BDD
     public function save() {
+
         $sql = "INSERT INTO voiture (marque, couleur, immatriculation) VALUES (:marque, :couleur, :immat)";
         $req_prep = Model::$pdo->prepare($sql);
 
@@ -102,7 +105,27 @@ class ModelVoiture {
             if ($errCode == 23000) {
                 return false;
             }
-        };
-        
+        };  
+    }
+
+    // supprime une voiture de la BDD
+    public static function delete($immat) {
+
+        $sql = "DELETE FROM voiture WHERE immatriculation=:immat";
+        $req_prep = Model::$pdo->prepare($sql);
+
+        $values = array(
+            "immat" => $immat
+        );
+
+        try {
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            $errCode = $e->getCode();
+
+            var_dump($errCode);
+        };  
+
+        return true;
     }
 }

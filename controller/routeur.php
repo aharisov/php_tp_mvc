@@ -22,6 +22,10 @@
                 ];
                 ControllerVoiture::$action($data); 
                 break;
+            case "delete":
+                $immat = $_GET["immat"];
+                ControllerVoiture::$action($immat);
+                break;     
             default:
                 // Appel de la méthode statique $action de ControllerVoiture
                 ControllerVoiture::$action();     
