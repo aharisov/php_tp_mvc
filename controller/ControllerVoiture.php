@@ -20,5 +20,19 @@
             }
             
         }
+
+        // crée une voiture
+        public static function create($immat) {
+            
+            require ('../view/voiture/create.php');    
+        }
+
+        // save une nouvelle voiture dans la BDD
+        public static function created($data) {
+            
+            $newVoiture = new ModelVoiture($data["marque"], $data["couleur"], $data["immatriculation"]);
+            $newVoiture->save();
+            ControllerVoiture::readAll();
+        }
     }
 ?>
