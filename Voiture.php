@@ -33,12 +33,11 @@ class Voiture {
 
     public static function getAllVoitures() {
         $rep = Model::$pdo->query('SELECT * FROM voiture');
-        $tab_obj = $rep->fetchAll(PDO::FETCH_OBJ);
+        $rep->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+        $tab_voit = $rep->fetchAll();
 
-        foreach($tab_obj as $obj) {
-            echo "<p>immatriculation - $obj->immatriculation</p>";
-            echo "<p>marque - $obj->marque</p>";
-            echo "<p>couleur - $obj->couleur</p><hr>";
+        foreach($tab_voit as $obj) {
+            echo $obj->afficher();
         }
     }
 }
