@@ -23,6 +23,12 @@ class ModelVoiture {
         }
     }
 
+    // getter pour récupérer l'immatriculation
+    public function getImmatriculation() {
+        
+        return $this->immatriculation;
+    }
+
     // la methode pour afficher des voitures
     /*
     public function afficher() {
@@ -38,9 +44,11 @@ class ModelVoiture {
         $rep->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
         $tab_voit = $rep->fetchAll();
 
-        foreach($tab_voit as $obj) {
-            echo $obj->afficher();
-        }
+        // foreach($tab_voit as $obj) {
+        //     echo $obj->afficher();
+        // }
+
+        return $tab_voit;
     }
 
     // la methode récupère une voiture par immatriculation
