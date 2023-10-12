@@ -28,6 +28,14 @@ class ModelVoiture {
         
         return $this->immatriculation;
     }
+    public function getMarque() {
+        
+        return $this->marque;
+    }
+    public function getCouleur() {
+        
+        return $this->couleur;
+    }
 
     // la methode pour afficher des voitures
     /*

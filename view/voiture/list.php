@@ -11,7 +11,7 @@
         error_reporting(E_ALL);
         
         foreach ($tab_v as $v)
-            echo '<p> Voiture d\'immatriculation ' . $v->getImmatriculation() . '.</p>';
+            echo '<p> Voiture <a href="/php-tp-mvc/controller/routeur.php?action=read&immat=' . $v->getImmatriculation() . '">d\'immatriculation ' . $v->getImmatriculation() . '</a>.</p>';
         ?>
     </body>
 </html>
